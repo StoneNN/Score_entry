@@ -12,9 +12,7 @@ export default{
       console.log('===== gettt =====',loginState);
       if (loginState.data.success === true) {
         yield put(
-          routerRedux.push({
-             pathname:'/Score_list'
-          })
+         
         )
       } else {
         console.log('===== ShowModal =====');
