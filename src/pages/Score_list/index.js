@@ -7,12 +7,16 @@ import styles from './index.css';
 const Lists = ({inputs1,lists1,dispatch})=>{
   //添加
   function handleAdd() {
+    // dispatch({
+    //   type:'lists/add',
+    //   payload:inputs1.inputValue //输出到models/add.js里的inputs.inputValue
+    // })
+    // dispatch({
+    //   type:'inputs/change',
+    //   payload:''
+    // })
     dispatch({
-      type:'lists/add',
-      payload:inputs1.inputValue //输出到models/add.js里的inputs.inputValue
-    })
-    dispatch({
-      type:'inputs/change',
+      type:'inputs/gettt',
       payload:''
     })
   }
