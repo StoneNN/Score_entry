@@ -26,3 +26,7 @@ export async function loginService(userinfo){
     console.log('feedBack',feedBack);
     return feedBack;
 }
+
+export async function queryScoreService() {
+  return request('/api/score');
+}
