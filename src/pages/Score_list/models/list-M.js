@@ -1,6 +1,6 @@
 export default{
   namespace:'lists',
-  state:[ ],
+  state:[123],
   reducers:{
     add(state,{payload:name}){
       console.log('--- newListValue ---',name);

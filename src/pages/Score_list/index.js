@@ -2,21 +2,18 @@ import React from 'react';
 import {connect} from 'dva';
 import Add from '../../components/Add_C';
 import List from '../../components/List_C';
+import RecoredForm from '../../components/RecoredAdd';
 import styles from './index.css';
 
 const Lists = ({inputs1,lists1,dispatch})=>{
   //添加
   function handleAdd() {
-    // dispatch({
-    //   type:'lists/add',
-    //   payload:inputs1.inputValue //输出到models/add.js里的inputs.inputValue
-    // })
-    // dispatch({
-    //   type:'inputs/change',
-    //   payload:''
-    // })
     dispatch({
-      type:'inputs/gettt',
+      type:'lists/add',
+      payload:inputs1.inputValue //输出到models/add.js里的inputs.inputValue
+    })
+    dispatch({
+      type:'inputs/change',
       payload:''
     })
   }
@@ -45,9 +42,10 @@ const Lists = ({inputs1,lists1,dispatch})=>{
         onChange={handleChange}
         // input={inputs1.inputValue} // handleChange 已经修改了input标签里的值，此处又做了一次传值
       />
+      <RecoredForm />
       <br/>
       <p>* * * * * * * * * * * * * * * * * * * * * * * * *</p>
-      <h2>待办项列表</h2>
+      <h2>计分表</h2>
       <br/>
       <List onDelete={handleDelete} lists={lists1} />
     </div>
