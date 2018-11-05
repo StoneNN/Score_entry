@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'dva';
-import Add from '../../components/Add_C';
 import List from '../../components/List_C';
-import RecoredForm from '../../components/RecoredAdd';
+import RecoredForm from '../../components/RecoredAdd_C';
 import styles from './index.css';
 
 const Lists = ({inputs1,lists1,dispatch})=>{
@@ -37,11 +36,7 @@ const Lists = ({inputs1,lists1,dispatch})=>{
   //
   return(
     <div className={styles.boxContainer}>
-      <Add
-        onAdd={handleAdd}
-        onChange={handleChange}
-        // input={inputs1.inputValue} // handleChange 已经修改了input标签里的值，此处又做了一次传值
-      />
+      
       <RecoredForm />
       <br/>
       <p>* * * * * * * * * * * * * * * * * * * * * * * * *</p>

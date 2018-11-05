@@ -1,12 +1,13 @@
 import React from 'react';
 import { Row,Col,Form,Select,Cascader,Input,Button } from 'antd';
-import styles from './RecoredAdd.css';
+import styles from './RecoredAdd_C.css';
 import { deflate } from 'zlib';
 import { number } from 'prop-types';
 import { connect } from 'dva';
 // import Input from 'antd-mobile/lib/input-item/Input';
 
  const FormItem = Form.Item;
+ const { Option } = Select;
  const dealData = [
     {
         value:'1',
@@ -566,6 +567,9 @@ import { connect } from 'dva';
         };
         return(
             <div className={styles.box}>
+               <div className={styles.titleBox}>
+                   打牌信息录入
+               </div>
                <Row>
                 <Col span={3}></Col>
                 <Col span={18} className={styles.inputBox}>
@@ -581,7 +585,7 @@ import { connect } from 'dva';
                             { required: true, message: '请填写牌号!' },
                          ],
                        })(
-                          <Select placeholder="请填写牌号" >
+                          <Select placeholder="请填写牌号"  allowClear>
                             <Option value="1">1</Option>
                             <Option value="2">2</Option>
                             <Option value="3">3</Option>
@@ -607,16 +611,16 @@ import { connect } from 'dva';
                        label="庄家："
                        hasFeedback
                     >
-                      {getFieldDecorator('declarer', {
+                      {getFieldDecorator('declare', {
                          rules: [
                             { required: true, message: '请填写庄家!' },
                          ],
                        })(
-                          <Select placeholder="请填写庄家">
-                            <Option value="east">E</Option>
-                            <Option value="south">S</Option>
-                            <Option value="west">W</Option>
-                            <Option value="north">N</Option>
+                          <Select placeholder="请填写庄家" allowClear>
+                            <Option value="E">E</Option>
+                            <Option value="S">S</Option>
+                            <Option value="W">W</Option>
+                            <Option value="N">N</Option>
                           </Select>
                        )}
                     </FormItem>
@@ -629,7 +633,7 @@ import { connect } from 'dva';
                       {getFieldDecorator('contract', {
                          rules: [{ type: 'array', required: true, message: '请填写定约!' }],
                       })(
-                          <Cascader style={{textAlign:'left'}} placeholder="请填写牌定约" options={dealData} />
+                          <Cascader style={{textAlign:'left'}} placeholder="请填写定约" options={dealData} />
                         )}
                     </FormItem>
                 {/* 首攻 */}
