@@ -690,7 +690,8 @@ import { connect } from 'dva';
  const RecoredForm = Form.create()(RecordNewForm);
 
 
- const mapStateToProps = ()=>{
+
+//  const mapStateToProps = ()=>{
     
-  }
- export default connect( mapStateToProps )(RecoredForm);
+//   }
+ export default connect(  )(RecoredForm);

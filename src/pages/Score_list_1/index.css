@@ -1,0 +1,14 @@
+.newRecoredBtn{
+    float: right;
+    margin-right: 10%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+.titleBox{
+    background-color: brown;
+    line-height: 60px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+}

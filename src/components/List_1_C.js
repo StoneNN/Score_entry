@@ -1,12 +1,10 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import {Table, Popconfirm, Button, Row, Col} from 'antd';
-import styles from './List_C.css';
+import React, { Component }from 'react';
+import {Table, Row, Col, Popconfirm, Button} from 'antd';
+import { connect } from 'dva';
 
-const List = ({onDelete,lists})=>{
-  console.log('lists--------',lists);
+import styles from './List_1_C.css';
 
-  const columns=[
+const columns=[
     {
       title:'牌号',
       dataIndex:'cardNum',
@@ -65,32 +63,36 @@ const List = ({onDelete,lists})=>{
       }
     }
   ];
+class RecordList extends Component{
 
-  return(
-    <Row>
-      <Col span={1}></Col>
-      <Col span={22}>
-        <Table
-          // dataSource={lists} //默认的lists数据
-          dataSource={lists}
-          columns={columns}
-          rowKey={record => record.id}
-          pagination={{pageSize:6}}
-          className={styles.list1}
-          // bordered
-          
-        >
-        </Table>
-      </Col>
-      <Col span={1}></Col>
-    </Row>
-    
-  );
-};
+    render(){
 
-List.propTypes={
-  onDelete:propTypes.func.isRequired,
-  lists:propTypes.array.isRequired
-};
+        return(
+          <React.Fragment> 
+            <Table
+                dataSource={ this.props.lists }
+                columns={columns}
+                rowKey={record => record.id}
+                pagination={{pageSize:6}}
+                className={styles.RecordList}
+                // bordered 
+            >
+            </Table>
+          </React.Fragment> 
+        );
+    }
+}
 
-export default List;
+
+// export default RecordList;
+
+const mapStateToProps = ({lists}) =>{
+   console.log('--- lists_1_c --- : lists',lists);
+   return{
+       lists
+   }
+}
+
+export default connect(
+    mapStateToProps
+)(RecordList);
