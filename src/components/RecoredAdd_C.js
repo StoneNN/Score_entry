@@ -563,7 +563,7 @@ import { connect } from 'dva';
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
           labelCol: { span: 6 },
-           wrapperCol: { span: 14 },
+          wrapperCol: { span: 14 },
         };
         return(
             <div className={styles.box}>

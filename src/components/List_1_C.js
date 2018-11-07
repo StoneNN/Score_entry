@@ -11,6 +11,11 @@ const columns=[
       align:"center",
     },
     {
+      title:'局况',
+      dataIndex:'vulnerability',
+      align:"center",
+    },
+    {
       title:'庄家',
       dataIndex:'declare',
       align:"center" 
@@ -46,7 +51,7 @@ const columns=[
             title='确认删除?'
             okText="确认"
             cancelText="取消"
-            onConfirm={()=>onDelete(record.id)}
+            onConfirm={()=>this.onDelete(record.id)}
           >
             <Button>删除</Button>
           </Popconfirm>
@@ -64,11 +69,18 @@ const columns=[
     }
   ];
 class RecordList extends Component{
+    
 
+    onDelete(id){
+      console.log('---- onDelete ---',id);
+      this.props.dispatch({
+        type: 'lists/delete',
+        payload: id
+      });
+    }
     render(){
 
         return(
-          <React.Fragment> 
             <Table
                 dataSource={ this.props.lists }
                 columns={columns}
@@ -78,7 +90,6 @@ class RecordList extends Component{
                 // bordered 
             >
             </Table>
-          </React.Fragment> 
         );
     }
 }
