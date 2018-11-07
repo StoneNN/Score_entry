@@ -9,7 +9,26 @@ export default{
     {id:5,cardNum:"第5副",vulnerability:"南北",declare:"E",contract:"2NT",leader:"S5",result:"+3",points:"330"}
   ],
   
+  effects:{
+    *getScoreData({ },{call,put}){
+      // console.log('effects:payload:  -----',payload);
+      let scoreList = yield call(getScoreService);
+      console.log('loginState.data.success：',loginState.data.success)
+      if (loginState.data.success === true) {
+        yield put(
+          routerRedux.push({
+             pathname:'/Score_list'
+          })
+        )
+      } else {
+        console.log('===== ShowModal =====');
+        yield put({type:'showModal'});
+      }
+    }
+  },
+
   reducers:{
+
     add(state,{payload:values}){
       console.log('--- newRecord ---',values);
       let id = state.reduce(

@@ -7,7 +7,12 @@ import styles from './List_1_C.css';
 
 class RecordList extends Component{
     
-
+    componentDidMount(){
+      this.props.dispatch({
+        type:'loginModel/login',
+        payload:{name:values.userName, pwd:values.password}
+      });
+    }
     onDelete(id){
       console.log('---- onDelete ---',id);
       this.props.dispatch({
@@ -71,7 +76,7 @@ class RecordList extends Component{
                 title='确认编辑?'
                 okText="确认"
                 cancelText="取消"
-                onConfirm={()=>onModify(record.id)}
+                onConfirm={()=>this.onModify(record.id)}
               >
                 <Button>编辑</Button>
               </Popconfirm>
