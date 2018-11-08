@@ -1,6 +1,8 @@
+import Mock from 'mockjs';
+
 const scoreTemplate = {
 
-    lists:[
+    scoreLists:[
         {id:1,cardNum:"第1副",vulnerability:"双无",declare:"E",contract:"2H",leader:"S5",result:"=",points:"450"},
         {id:2,cardNum:"第2副",vulnerability:"南北",declare:"W",contract:"3C",leader:"HK",result:"+2",points:"120"},
         {id:3,cardNum:"第3副",vulnerability:"东西",declare:"N",contract:"6S",leader:"WA",result:"-1",points:"230"},
@@ -9,6 +11,11 @@ const scoreTemplate = {
       ],
 }
 
+var scoreData = Mock.mock(scoreTemplate);
 export default {
-    'GET /api/score': scoreTemplate,
+    'POST /api/score':(req,res)=>{
+        res.send({
+            scoreTemplate
+        });
+    }
   };

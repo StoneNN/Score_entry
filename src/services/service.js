@@ -1,6 +1,9 @@
 
 import request from '../utils/request';
 
+
+//   ---------- login -----------
+
 function params (obj){
    let result =[];
     for(let index in obj){
@@ -26,7 +29,18 @@ export async function loginService(userinfo){
     console.log('feedBack',feedBack);
     return feedBack;
 }
-
-export async function queryScoreService() {
-  return request('/api/score');
+// ----------- 获取计分表数据 -------------
+export async function getScoreService() {
+ 
+  const feedBack = await request(
+    '/api/score',
+    {
+      method:'post',
+      headers:{
+        　　　　 'Content-Type': 'application/x-www-form-urlencoded',
+      　　　　 },
+    }
+  )
+    console.log('feedBack',feedBack);
+    return feedBack;
 }

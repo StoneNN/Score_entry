@@ -1,39 +1,36 @@
+import { getScoreService } from '@/services/service';
+
+
+
 export default{
   namespace:'lists',
 
-  state:[
-    {id:1,cardNum:"第1副",vulnerability:"双无",declare:"E",contract:"2H",leader:"S5",result:"=",points:"450"},
-    {id:2,cardNum:"第2副",vulnerability:"南北",declare:"W",contract:"3C",leader:"S5",result:"+2",points:"120"},
-    {id:3,cardNum:"第3副",vulnerability:"东西",declare:"N",contract:"6S",leader:"S5",result:"-1",points:"230"},
-    {id:4,cardNum:"第4副",vulnerability:"双有",declare:"S",contract:"1NT",leader:"S5",result:"-4",points:"210"},
-    {id:5,cardNum:"第5副",vulnerability:"南北",declare:"E",contract:"2NT",leader:"S5",result:"+3",points:"330"}
-  ],
+  state:[  ],
   
   effects:{
     *getScoreData({ },{call,put}){
       // console.log('effects:payload:  -----',payload);
       let scoreList = yield call(getScoreService);
-      console.log('loginState.data.success：',loginState.data.success)
-      if (loginState.data.success === true) {
-        yield put(
-          routerRedux.push({
-             pathname:'/Score_list'
-          })
-        )
-      } else {
-        console.log('===== ShowModal =====');
-        yield put({type:'showModal'});
-      }
+      const scoreLists = scoreList.data.scoreTemplate.scoreLists;
+      console.log(' ----- getScoreService：',scoreLists);
+      yield put({
+        type: 'save',
+        payload: { scoreLists },
+      });
     }
   },
 
   reducers:{
-
+// ------------ save ------------
+    save(state, { payload: { scoreLists } }) {
+      return { ...state, scoreLists };
+   },
+// ------------ add ------------
     add(state,{payload:values}){
       console.log('--- newRecord ---',values);
       let id = state.reduce(
-        (previous,current) =>
-        previous.id > current.id ? previous:current).id;
+          (previous,current) => previous.id > current.id ? previous:current
+        ).id;
         
       id++;
       console.log('---- NewId ---',id);
@@ -61,7 +58,8 @@ export default{
       const points = values.points;
       return[...state,{id,cardNum,vulnerability,declare,contract,leader,result,points}];
     },
-
+     
+// ------------ delete ------------
     delete(state,{payload:id}){
       return state.filter(item=>item.id !==id);
     },

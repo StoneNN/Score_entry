@@ -20,9 +20,9 @@ var loginData = Mock.mock(loginTemplate);
 
 module.exports = {
   'POST /api/login':(req,res)=>{
-    console.log('===========req==',loginData,req.body);
-    console.log('loginTemplate-----',loginTemplate);
-    console.log('loginData-----',loginData);
+    // console.log('===========req==',loginData,req.body);
+    // console.log('loginTemplate-----',loginTemplate);
+    // console.log('loginData-----',loginData);
 
     const userArr = loginData.loginUsers.filter(
       item => (

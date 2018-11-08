@@ -8,9 +8,9 @@ import styles from './List_1_C.css';
 class RecordList extends Component{
     
     componentDidMount(){
+      console.log('-=-=-=-=-=-= getScoreData');
       this.props.dispatch({
-        type:'loginModel/login',
-        payload:{name:values.userName, pwd:values.password}
+        type:'lists/getScoreData',
       });
     }
     onDelete(id){
@@ -87,7 +87,7 @@ class RecordList extends Component{
       ];
         return(
             <Table
-                dataSource={ this.props.lists }
+                dataSource={ this.props.lists.scoreLists }
                 columns={columns}
                 rowKey={record => record.id}
                 pagination={{pageSize:6}}
