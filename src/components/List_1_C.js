@@ -7,6 +7,7 @@ import styles from './List_1_C.css';
 
 class RecordList extends Component{
     
+ 
     componentDidMount(){
       console.log('-=-=-=-=-=-= getScoreData');
       this.props.dispatch({
@@ -61,7 +62,6 @@ class RecordList extends Component{
           title:'操作',
           align:"center", 
           render:(record)=>{
-            console.log('-----record------',record);
             return(
              <React.Fragment>
               <Popconfirm
@@ -85,9 +85,10 @@ class RecordList extends Component{
           }
         }
       ];
+      console.log('---this.props.lists ----',this.props.lists);
         return(
             <Table
-                dataSource={ this.props.lists.scoreLists }
+                dataSource={ this.props.lists.length >0 ? this.props.lists : []}
                 columns={columns}
                 rowKey={record => record.id}
                 pagination={{pageSize:6}}

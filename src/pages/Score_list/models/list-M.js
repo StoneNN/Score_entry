@@ -5,7 +5,7 @@ import { getScoreService } from '@/services/service';
 export default{
   namespace:'lists',
 
-  state:[  ],
+  state:[],
   
   effects:{
     *getScoreData({ },{call,put}){
@@ -23,31 +23,37 @@ export default{
   reducers:{
 // ------------ save ------------
     save(state, { payload: { scoreLists } }) {
-      return { ...state, scoreLists };
+      console.log(' ----- getScoreService：',scoreLists);
+      state = state.concat(scoreLists)
+      console.log('------ state -----',state);
+      return state;
+
+     
    },
-// ------------ add ------------
+// ------------ add -------------
     add(state,{payload:values}){
       console.log('--- newRecord ---',values);
       let id = state.reduce(
-          (previous,current) => previous.id > current.id ? previous:current
-        ).id;
-        
+        (previous,current) =>
+        previous.id > current.id ? previous:current).id;
       id++;
       console.log('---- NewId ---',id);
       console.log('--- state ---',state);
       console.log('--- newCardNum ---',values.cardNum);
       const cardNum = "第"+values.cardNum+"副";
+      var cardNumber =  parseInt(values.cardNum);
+      console.log('--------cardNumber-------',cardNumber);
       var vulnerability;
-      if (id+1 === 1 || id+1 === 8 || id+1 === 11 || id+1 === 14 ) {
+      if (cardNumber === 1 || cardNumber === 8 || cardNumber === 11 || cardNumber === 14 ) {
         console.log('------------------=-=双无');
         vulnerability = "双无";
-      } else if (id+1 === 2 || id+1 === 5 || id+1 === 12 || id+1 === 15) {
+      } else if (cardNumber === 2 || cardNumber === 5 || cardNumber === 12 || cardNumber === 15) {
         console.log('------------------=-=南北');
         vulnerability = "南北";
-      } else if (id+1 === 3 || id+1 === 6 || id+1 === 9 || id+1 === 16) {
+      } else if (cardNumber === 3 || cardNumber === 6 || cardNumber === 9 || cardNumber === 16) {
         console.log('------------------=-=东西');
         vulnerability = "东西";
-      } else if (id+1 === 4 || id+1 === 7 || id+1 === 10 || id+1 === 13) {
+      } else if (cardNumber === 4 || cardNumber === 7 || cardNumber === 10 || cardNumber === 13) {
         console.log('------------------=-=双有');
         vulnerability = "双有";
       }  
@@ -56,7 +62,10 @@ export default{
       const leader = values.leader.join('');
       const result = values.result.join('');
       const points = values.points;
-      return[...state,{id,cardNum,vulnerability,declare,contract,leader,result,points}];
+      const scoreList = {id,cardNum,vulnerability,declare,contract,leader,result,points};
+      console.log('=================== ',scoreList);
+      console.log('===================',[...state,scoreList])
+      return[...state,scoreList];
     },
      
 // ------------ delete ------------
