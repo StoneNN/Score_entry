@@ -21,6 +21,13 @@ class RecordList extends Component{
         payload: id
       });
     }
+    onModify(record){
+      console.log('---- onModify ---',record);
+      this.props.dispatch({
+        // type: 'lists/delete',
+        // payload: id
+      });
+    }
     render(){
       const columns=[
         {
@@ -76,7 +83,7 @@ class RecordList extends Component{
                 title='确认编辑?'
                 okText="确认"
                 cancelText="取消"
-                onConfirm={()=>this.onModify(record.id)}
+                onConfirm={()=>this.onModify(record)}
               >
                 <Button>编辑</Button>
               </Popconfirm>
