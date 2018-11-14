@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row,Col,Form,Select,Cascader,Input,Button,Modal } from 'antd';
-import styles from './RecoredAdd_1_C.css';
+import styles from './RecoredAdd_2_C.css';
 import { deflate } from 'zlib';
 import { number } from 'prop-types';
 import { connect } from 'dva';
@@ -549,12 +549,16 @@ import { connect } from 'dva';
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, values,modalVisible) => {
           if (!err) {
             console.log('Received values of form: ', values);
             this.props.dispatch({
                 type:'lists/add',
                 payload:values 
+            });
+            this.props.dispatch({
+                type:'popForms/modalVisibleAction',
+                payload:{ visible:modalVisible }
             });
             this.props.form.resetFields();
             // this.setState({modalVisible:false});
@@ -693,7 +697,10 @@ import { connect } from 'dva';
 
 
 
-//  const mapStateToProps = ()=>{
-    
-//   }
- export default connect(  )(PopRecordNewForm);
+ const mapStateToProps = ({popForms}) =>{
+    console.log('--- recoredAdd2 --- : lists',popForms);
+    return{
+      popForms
+    };
+  }
+ export default connect( mapStateToProps )(PopRecordNewForm);

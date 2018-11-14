@@ -2,7 +2,7 @@ import React, { Component }from 'react';
 import {Table, Row, Col, Popconfirm, Button} from 'antd';
 import { connect } from 'dva';
 
-import styles from './List_1_C.css';
+import styles from './List_2_C.css';
 
 
 class RecordList extends Component{
@@ -21,13 +21,13 @@ class RecordList extends Component{
         payload: id
       });
     }
-    onModify({record}){
+    onModify(record){
       console.log('---- onModify ---',record);
       this.props.dispatch({
         type:'popForms/modalVisibleAction',
         payload:{ 
-          visible:true,
-          record:record
+          modalVisible:true,
+          curentRecord:record
          }
       });
     }
@@ -72,6 +72,8 @@ class RecordList extends Component{
           title:'操作',
           align:"center", 
           render:(record)=>{
+            console.log('-------- currentRecord ---------',record);
+            console.log('-------- currentRecord.id ---------',record.id);
             return(
              <React.Fragment>
               <Popconfirm
@@ -82,15 +84,7 @@ class RecordList extends Component{
               >
                 <Button>删除</Button>
               </Popconfirm> 
-              <Popconfirm
-                title='确认删除?'
-                okText="确认"
-                cancelText="取消"
-                onConfirm={()=>this.onModify(record.id)}
-              >
-                <Button>编辑</Button>
-              </Popconfirm> 
-              {/* <Button onClick={()=>this.onModify(record)} >编辑</Button> */}
+              <Button onClick={()=>this.onModify(record)} >编辑</Button>
              </React.Fragment>
             );
           }
@@ -115,7 +109,7 @@ class RecordList extends Component{
 // export default RecordList;
 
 const mapStateToProps = ({lists}) =>{
-   console.log('--- lists_1_c --- : lists',lists);
+   console.log('--- lists_2_c --- : lists',lists);
    return{
        lists
    }
