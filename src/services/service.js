@@ -2,7 +2,7 @@
 import request from '../utils/request';
 
 
-//   ---------- login fun=====-----------
+//   ---------- login fun222222-----------
 
 function params (obj){
    let result =[];
