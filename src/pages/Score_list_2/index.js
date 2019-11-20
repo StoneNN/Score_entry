@@ -36,6 +36,8 @@ class ReaordTable extends Component{
                     <Modal
                       title="打牌信息录入"
                       centered
+                      headStyle={{padding:'10px 20px'}}
+                      bodyStyle={{padding:'5px 20px 0 20px'}}
                       footer={null}
                       visible={this.props.popForms.modalVisible}
                       onOk={() => this.setModalVisible(false)}

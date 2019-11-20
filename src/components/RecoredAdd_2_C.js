@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row,Col,Form,Select,Cascader,Input,Button,Modal } from 'antd';
+import { Row,Col,Form,Select,Cascader,Input,Button } from 'antd';
 import styles from './RecoredAdd_2_C.css';
 import { deflate } from 'zlib';
 import { number } from 'prop-types';
@@ -570,7 +570,7 @@ import { connect } from 'dva';
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
            labelCol: { span: 6 },
-           wrapperCol: { span: 14 },
+           wrapperCol: { span: 14 }
         };
         return(
             <div className={styles.box}>
@@ -581,6 +581,7 @@ import { connect } from 'dva';
                        {...formItemLayout}
                        label="牌号："
                        hasFeedback
+                       style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('cardNum', {
                          rules: [
@@ -612,6 +613,7 @@ import { connect } from 'dva';
                        {...formItemLayout}
                        label="庄家："
                        hasFeedback
+                       style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('declare', {
                          rules: [
@@ -631,6 +633,7 @@ import { connect } from 'dva';
                         {...formItemLayout}
                         label="定约:"
                         hasFeedback
+                        style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('contract', {
                          rules: [{ type: 'array', required: true, message: '请填写定约!' }],
@@ -643,6 +646,7 @@ import { connect } from 'dva';
                         {...formItemLayout}
                         label="首攻:"
                         hasFeedback
+                        style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('leader', {
                          rules: [{ type: 'array', required: true, message: '请填写首攻!' }],
@@ -655,6 +659,7 @@ import { connect } from 'dva';
                         {...formItemLayout}
                         label="结果:"
                         hasFeedback
+                        style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('result', {
                          rules: [{ type: 'array', required: true, message: '请填写结果!' }],
@@ -667,6 +672,7 @@ import { connect } from 'dva';
                         {...formItemLayout}
                         label="得分:"
                         hasFeedback
+                        style={{ marginBottom:'2px'}}
                     >
                       {getFieldDecorator('points', {
                          rules: [{ required: true, required: true, message: '请填写得分!' }],
